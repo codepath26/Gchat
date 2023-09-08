@@ -25,24 +25,21 @@
 
 //  loginuser
 const loginuser = async () =>{
-  try{
-    const token = localStorage.getItem('token')
-    
+  try{ 
      const obj = {
       email : email.value,
       password : password.value
      }
-     let data = await axios.post(`http://localhost:3000/user/login` ,obj ,{
-      headers : {
-        'Authorization' : token
-      }
-     });
+     let response = await axios.post(`http://localhost:3000/user/login` ,obj);
+     console.log(response)
+      const  {data , token} = response.data;
+      localStorage.setItem('token' , token);
      console.log(data);
      window.location.href = '../main/index.html'
   }
   catch(err){
 
-    if(err.response.status === 404){
+    if(err.response.status === 401){
       alert1.style.display = 'block'
       alert1.style.color = 'red'
       alert1.innerText = err.response.data.message
