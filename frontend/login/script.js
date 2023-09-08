@@ -1,74 +1,59 @@
-  const forms = document.querySelector(".forms");
-  const pwShowHide = document.querySelectorAll(".eye-icon");
-  const links = document.querySelectorAll(".link");
+  const eyeIcon = document.querySelector(".eye-icon");
   const form = document.getElementById("form");
   const email = document.getElementById("email");
-  const username = document.getElementById("username");
   const password = document.getElementById("password");
-  const CP = document.getElementById("c-password");
-  const alert1 = document.getElementById("alert");
-
-
-
-
-
-
-
-
-  const formdata = async (e) => {
-    e.preventDefault();
-    if (password.value !== CP.value) {
-      alert1.style.display = "block";
-      alert1.textContent = "Please Check The Password";
-    } else {
-      const obj = {
-        username: username.value,
-        email: email.value,
-        password: password.value,
-      };
-      alert1.style.display = "none";
-      try {
-        let response = await axios.post("http://localhost:3000/user/signup", obj);
-        const {user , token}  = response.data
-        console.log(user);
-        console.log(token);
-        localStorage.setItem('token' , token)
-        username.value = '',
-        email.value = '',
-        password.value = ''
-        CP.value = ''
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  };
-
-  form.addEventListener("submit", formdata);
-
-  pwShowHide.forEach((eyeIcon) => {
-    eyeIcon.addEventListener("click", () => {
-      let pwFields =
-        eyeIcon.parentElement.parentElement.querySelectorAll(".password");
-
-      pwFields.forEach((password) => {
-        if (password.type === "password") {
-          password.type = "text";
-          eyeIcon.classList.replace("bx-hide", "bx-show");
-          return;
-        }
-        password.type = "password";
-        eyeIcon.classList.replace("bx-show", "bx-hide");
-      });
-    });
-  });
-
-  links.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault(); //preventing form submit
-      forms.classList.toggle("show-signup");
-    });
-  });
-
-  //adding the data to backend
-
+  const alert1 = document.getElementById("alert1");
+// console.log(email);
  
+
+ const toggleicon = async ()=>{
+  try{
+    let pwFields = eyeIcon.parentElement.parentElement.querySelectorAll('.password')
+    pwFields.forEach((inputField)=>{
+    if(inputField.type === 'password'){
+      inputField.type = "text";
+      eyeIcon.classList.replace('bx-hide' ,'bx-show');
+      return;
+    }
+    inputField.type = 'password';
+    eyeIcon.classList.replace('bx-show' , 'bx-hide')
+    })
+  }catch(err){
+    console.log(err);
+  }
+ }
+
+//  loginuser
+const loginuser = async () =>{
+  try{
+    const token = localStorage.getItem('token')
+    
+     const obj = {
+      email : email.value,
+      password : password.value
+     }
+     let data = await axios.post(`http://localhost:3000/user/login` ,obj ,{
+      headers : {
+        'Authorization' : token
+      }
+     });
+     console.log(data);
+     window.location.href = '../main/index.html'
+  }
+  catch(err){
+
+    if(err.response.status === 404){
+      alert1.style.display = 'block'
+      alert1.style.color = 'red'
+      alert1.innerText = err.response.data.message
+    }else{
+      console.log(err)
+
+    }
+  }
+}
+ eyeIcon.addEventListener('click' , toggleicon);
+ form.addEventListener('submit' , loginuser)
+
+
+

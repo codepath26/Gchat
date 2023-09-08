@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
-app.use(loginRoutes);
-sequelize.sync({force : true});
+app.use('/user',loginRoutes);
+sequelize.sync({force : false});
 
 app.listen(3000)

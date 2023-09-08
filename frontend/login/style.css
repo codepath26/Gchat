@@ -35,6 +35,9 @@ header{
     color: #232836;
     text-align: center;
 }
+#alert1{
+    display: none;
+}
 form{
     margin-top: 30px;
 }
@@ -60,7 +63,7 @@ form{
     border: 1px solid#CACACA;
 }
 .field input:focus{
-    border-bottom-width: 0px;
+border: 1px solid #4b4bea;
 }
 .eye-icon{
     position: absolute;

@@ -3,17 +3,17 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 
 
+
 export const signup = async(req ,res)=>{
   try{
     const {username , email,password} = req.body;
     const find = await User.findOne({where : {email : email}})
-    console.log(find)
+
     if(find){
       return res.status(402).json({message : "User already exists, Please Login"})
     }else{
      
       const hashPassword = await bcrypt.hash (password , 10);
-      const token = jwt.sign({username,email} , process.env.JWT_SECRET_KEY)  
       try{
 
        const  user = await User.create({
@@ -21,6 +21,8 @@ export const signup = async(req ,res)=>{
           email : email,
           password : hashPassword
         })
+        const id = user.id
+        const token = jwt.sign({username,id ,email} , process.env.JWT_SECRET_KEY)  
         res.status(200).json({user : user , token :  token})
       }catch(err){
         return res.status(500).json({message : "something went wrong, user not created"})
@@ -32,7 +34,16 @@ export const signup = async(req ,res)=>{
 }
 
 export const logincheck = async(req ,res)=>{
-  const {email,password} = req.body;
-  
-  
+  try{
+
+    const {email,password} = req.body
+    const data = await bcrypt.compare(password , req.user.password);
+    if(data){
+    return res.status(201).json(data)
+    }else{
+      return res.status(404).json({message : 'Incorrect Password'})
+    }
+  }catch(err){
+    res.status(500).json(err);
+  }
 }

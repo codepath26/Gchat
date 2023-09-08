@@ -1,10 +1,11 @@
 import {Router} from 'express'
 import {signup , logincheck} from '../controllers/user.js'
+import authenticateUser from '../controllers/authenticate.js'
 const router = Router();
 
-router.post("/user/signup", signup);
+router.post("/signup", signup);
 
-router.post("/user/login",logincheck);
+router.post("/login",authenticateUser,logincheck);
 
 
 

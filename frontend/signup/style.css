@@ -33,7 +33,7 @@ h1{
     opacity: 1;
     pointer-events: auto;
 }
-#alert2{
+#alert1{
     display: none;
 }
 
@@ -68,7 +68,8 @@ form{
     border: 1px solid#CACACA;
 }
 .field input:focus{
-    border-bottom-width: 2px;
+    border: 1px solid #4b4bea;
+    
 }
 .eye-icon{
     position: absolute;
