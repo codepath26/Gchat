@@ -13,9 +13,10 @@
 
 
 
-
+ 
   const formdata = async (e) => {
     e.preventDefault();
+
     if (password.value !== CP.value) {
       alert1.style.display = "block";
       alert1.style.color = 'red'
@@ -29,15 +30,12 @@
 
       try {
         let response = await axios.post("http://localhost:3000/user/signup", obj);
-        const {user , token}  = response.data
-        console.log(user);
-        console.log(token);
-        localStorage.setItem('token' , token)
+        console.log(response)
         username.value = '',
         email.value = '',
         password.value = ''
         CP.value = '';
-        // window.location.href = '../login/login.html'
+        window.location.href = '../login/login.html'
       } catch (err) {
         if(err.response.status === 402){
            alert1.style.display = "block"
