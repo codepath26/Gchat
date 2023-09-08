@@ -16,14 +16,14 @@
       <div class="form login">
         <div class="form-content">
           <header>Login</header>
-
-          <form action="#">
+          <span id="alert1"></span>
+          <form action="#" id="form">
             <div class="field input-field">
-              <input type="email" placeholder="Email" class="input" />
+              <input type="email" placeholder="Email" class="input" autocomplete="email" id="email" />
             </div>
 
             <div class="field input-field">
-              <input type="password" placeholder="Password" class="password" />
+              <input type="password" placeholder="Password" class="password" autocomplete="password" id="password" />
               <i class="bx bx-hide eye-icon"></i>
             </div>
 
@@ -62,5 +62,6 @@
       </div>
     </section>
    <script src="./script.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </body>
 </html>
