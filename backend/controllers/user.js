@@ -9,7 +9,7 @@ export const signup = async(req ,res)=>{
     const find = await User.findOne({where : {email : email}})
     console.log(find)
     if(find){
-      return res.status(402).json({message : "email already stored"})
+      return res.status(402).json({message : "User already exists, Please Login"})
     }else{
      
       const hashPassword = await bcrypt.hash (password , 10);
