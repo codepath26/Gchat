@@ -19,8 +19,9 @@
   const formdata = async (e) => {
     e.preventDefault();
     if (password.value !== CP.value) {
-      alert1.style.display = "block";
-      alert1.textContent = "Please Check The Password";
+      alert2.style.display = "block";
+      alert2.style.color = 'red'
+      alert2.textContent = "Please Check The Password";
     } else {
       const obj = {
         username: username.value,
