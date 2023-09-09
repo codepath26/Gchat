@@ -22,6 +22,7 @@ h1{
   width: 50%;
   border-radius: 15px;
   background-color: rgb(164, 155, 155);
+  overflow:scroll;
 }
 
 .chat-list{
