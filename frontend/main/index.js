@@ -1,6 +1,7 @@
 const message = document.getElementById('type-message')
 const button = document.getElementById('send-message')
 const ul = document.getElementById('chat-list')
+const createGroup = document.getElementById('group-create')
 console.log(message)
 console.log(button)
 
@@ -73,3 +74,9 @@ const fetchdata = async()=>{
 
 }
 window.addEventListener('DOMContentLoaded',fetchdata)
+
+const creategroup = async (e)=>{
+  console.log(createGroup)
+
+}
+createGroup.addEventListener('click',creategroup);

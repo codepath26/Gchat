@@ -6,14 +6,15 @@ import User from '../models/user.js'
 
 const authenticateUser = async (req,res ,next)=>{
   try{
-   console.log(req.headers)
+
     const token = await req.headers.authorization
     const secretkey = process.env.JWT_SECRET_KEY
-console.log(token)
-console.log(secretkey)
+// console.log(token)
+
     const data =  jwt.verify(token,secretkey);
-   console.log(data);
+    // console.log(data)
     const user =  await User.findOne({where : { email : data.email}});
+    // console.log(user);
     if(user){
       req.user = user ;
       next();

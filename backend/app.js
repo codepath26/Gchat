@@ -13,20 +13,28 @@ import messageRoutes from './routes/message.js'
 
 
 import User from './models/user.js';
-import groupMes from './models/message.js';
+import Msg from './models/message.js';
+import UserGroup from './models/UserGroup.js';
+import group from './models/group.js';
+
+
 const app = express();
 app.use(bodyParser.json());   
 app.use(cors());
 
 
 
-User.hasMany(groupMes);
-groupMes.belongsTo(User , {onDelete : 'CASCADE'})
+User.hasMany(Msg);
+Msg.belongsTo(User , {onDelete : 'CASCADE'});
+User.belongsToMany(group , {through : UserGroup , foreignKey : 'userId'});
+group.belongsToMany(User , {through : UserGroup , foreignKey : 'groupId'});
+group.hasMany(Msg)
+Msg.belongsTo(group , {onDelete : 'CASCADE'})
 
 
 
 app.use('/user',loginRoutes);
 app.use('/group',messageRoutes)
-sequelize.sync({alter : true});
+sequelize.sync({force : false});
 
 app.listen(3000)
