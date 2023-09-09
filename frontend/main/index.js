@@ -34,15 +34,18 @@ button.addEventListener('click',async()=>{
 const fetchdata = async()=>{
   try{
     const token = localStorage.getItem('token');
-    const response = await axios.get('http://localhost:3000/group/messages',{
-      headers : {
-        Authorization : token
-      }
-    });
-    response.data.forEach(res =>{
-      ul.innerHTML += `<li class="right">${res.message}</li>`
-      
-    })
+    setTimeout(async() => {
+      const response = await axios.get('http://localhost:3000/group/messages',{
+        headers : {
+          Authorization : token
+        }
+      });
+      response.data.forEach(res =>{
+        ul.innerHTML += `<li class="right">${res.message}</li>`
+        
+      })
+    }, 1000);
+   
   }
   catch(err){console.log(err)}
 
