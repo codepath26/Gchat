@@ -34,17 +34,39 @@ button.addEventListener('click',async()=>{
 const fetchdata = async()=>{
   try{
     const token = localStorage.getItem('token');
-    setTimeout(async() => {
-      const response = await axios.get('http://localhost:3000/group/messages',{
-        headers : {
-          Authorization : token
-        }
-      });
-      response.data.forEach(res =>{
-        ul.innerHTML += `<li class="right">${res.message}</li>`
-        
+    const data = localStorage.getItem('array');
+   let id;
+   const array = JSON.parse(data)
+  //  console.log(Array.isArray(array))
+    if(array){
+      console.log('get the data from the local storage')
+     id = array[array.length - 1].id;
+      console.log(id);
+      array.forEach(obj =>{
+        ul.innerHTML += `<li class="right">${obj.message}</li>`
       })
-    }, 1000);
+    }else{
+      try{
+        const response = await axios.get(`http://localhost:3000/group/messages?lastmsgId=${id}`,{
+          headers : {
+            Authorization : token
+          }
+        });
+         console.log(Array.isArray(response.data))
+         localStorage.setItem('array' ,JSON.stringify(response.data))
+        response.data.forEach(res =>{
+          ul.innerHTML += `<li class="right">${res.message}</li>`
+          
+        })
+
+        
+      }catch(err){
+        console.log(err)
+      }
+     
+    }
+ 
+      
    
   }
   catch(err){console.log(err)}
