@@ -24,8 +24,9 @@
  }
 
 //  loginuser
-const loginuser = async () =>{
+const loginuser = async (e) =>{
   try{ 
+    e.preventDefault();
      const obj = {
       email : email.value,
       password : password.value

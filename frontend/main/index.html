@@ -7,13 +7,27 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="container">
+
+    <div class="container">
+      <div class="slidemenu">
+        <button id="menu-button" class="ellipsis-icon">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </button>
+        <div id="menu-container" class="menu-hidden">
+          <ul id="grouplist">
+    
+            <!-- Add more menu items as needed -->
+          </ul>
+        </div>
+      </div>
   <h1>Gchat</h1>
+  <form action="../creategroup/index.html" id="group-create">
+    <button type="submit">Create a group</button>
+  </form>
   <div class="message-box">
   <ul class="chat-list" id="chat-list">
-   
-    
-
   </ul>
   </div>
   <div class="messanger">
