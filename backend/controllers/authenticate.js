@@ -6,7 +6,7 @@ import User from '../models/user.js'
 
 const authenticateUser = async (req,res ,next)=>{
   try{
-
+  //  console.log(req.headers)
     const token = await req.headers.authorization
     const secretkey = process.env.JWT_SECRET_KEY
 // console.log(token)

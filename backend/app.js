@@ -20,6 +20,7 @@ import group from './models/group.js';
 
 const app = express();
 app.use(bodyParser.json());   
+app.use(bodyParser.urlencoded({extended : true}));   
 app.use(cors());
 
 
@@ -36,5 +37,6 @@ Msg.belongsTo(group , {onDelete : 'CASCADE'})
 app.use('/user',loginRoutes);
 app.use('/group',messageRoutes)
 sequelize.sync({force : false});
+// sequelize.sync({alter : true});
 
 app.listen(3000)

@@ -4,13 +4,14 @@
   box-sizing: border-box;
 }
 .container{
+/* border: 2px solid red; */
 height: 100vh;
 width: 100vw;
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items:  center;
-background: url('https://images.pexels.com/photos/89955/pexels-photo-89955.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')  center/cover no-repeat;
+/* background: url('https://images.pexels.com/photos/89955/pexels-photo-89955.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')  center/cover no-repeat; */
 }
 h1{
   font-size: 4rem;
@@ -128,3 +129,95 @@ h1{
   justify-content: center;
   align-items: center;
 }
+
+
+
+/* hemberggur menu/ */
+#menu-button {
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute;
+  top: 109px; /* Adjust the position as needed */
+  left: 400px; /* Adjust the position as needed */
+  z-index: 2; /* Ensure the button is above the menu */
+}
+
+/* Style for the ellipsis button */
+.ellipsis-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 20px; /* Adjust the width as needed */
+  height: 38px; /* Adjust the height as needed */
+  padding: 5px; /* Adjust padding as needed */
+  background: none;
+  border: none;
+  outline: none;
+  color: #333; /* Adjust the color as needed */
+}
+
+.dot {
+  width: 7px; /* Adjust the width of the dots as needed */
+  height: 7px; /* Adjust the height of the dots as needed */
+  background-color: #000000; /* Adjust the color of the dots as needed */
+  border-radius: 50%; /* Create circular dots */
+}
+
+
+#menu-container {
+  width: 0;
+  height: 70vh;
+  position: fixed;
+  top: 109px;
+  left: 404px;
+  background-color: rgb(74, 11, 210);
+  border-radius: 10px;
+  
+  overflow-x: hidden;
+  transition: 0.3s;
+
+}
+
+#menu-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#menu-container ul li {
+  padding: 20px;
+  /* margin-top: 10px; */
+}
+
+.menu-hidden {
+  width: 0;
+}
+
+.menu-visible {
+  width: 250px !important; /* Adjust the width as needed */
+}
+
+
+.g-list {
+ list-style: none;
+ font-weight: 400;
+font-size: 16px;
+color: white;
+ height: 1px;
+width: 90%;
+ border: 1px solid red;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin: 5px auto;
+ border-radius: 8px;
+ transition: all 0.4s;
+}
+.g-list:hover{
+  border: none;
+  background-color: #30d7f1;
+  color: #000000;
+}
+
+
+
