@@ -3,7 +3,8 @@ const gName = document.getElementById('group-name')
 const userlist = document.getElementById("userlist");
 const save = document.getElementById("save");
 const container = document.getElementById("container-1");
-const arr1 = [];
+const adminlist =[];
+const removelist = [];
 const ids = [];
 
 
@@ -38,25 +39,24 @@ async function addToGroup(e){
     const button = e.target
     e.target.classList.remove('adduser')
     const li = button.parentElement;
-    arr1.push(li.getAttribute('value'))
     ids.push(li.querySelector('#id').value)
     button.style.display = "none"
-    const ul = e.target.parentElement.parentElement
-    const arr = Array.from(ul.children);
-
     li.innerHTML +=`<button class="btn make_admin">make admin</button><button class="btn remove">remove</button>` 
   } 
   if(e.target.classList.contains('remove')){
+    const removebtn = e.target
     const li = e.target.parentElement
     const buttons = li.getElementsByTagName('button');
     const button = li.querySelector('#adduser');
- 
+    const adminbtn = li.querySelector('.make_admin');
    button.style.display = "block"
-
+   removebtn.style.display = "none";
+   adminbtn.style.display = "none";
   }
   if(e.target.classList.contains('make_admin')){
-    console.log('ram ram')
+    
   }
+
 }
 
 userlist.addEventListener('click' , addToGroup);
