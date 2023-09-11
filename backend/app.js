@@ -18,6 +18,15 @@ import UserGroup from './models/UserGroup.js';
 import group from './models/group.js';
 
 
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import { join } from 'path';
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+
 const app = express();
 app.use(bodyParser.json());   
 app.use(bodyParser.urlencoded({extended : true}));   
@@ -36,6 +45,9 @@ Msg.belongsTo(group , {onDelete : 'CASCADE'})
 
 app.use('/user',loginRoutes);
 app.use('/group',messageRoutes)
+app.use((req,res)=>{
+ res.sendFile(join(__dirname , `public/${req.url}`))
+})
 sequelize.sync({force : false});
 // sequelize.sync({alter : true});
 

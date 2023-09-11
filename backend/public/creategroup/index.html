@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>makegroup</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="main" id="main">
+    <h1>Make Your Own Group</h1>
+    <div class="container">
+      <form action="#" class="form" id="form">
+        <label for="group-name">Enter Group Name</label>
+        <input type="text" name="group-name" id="group-name">
+        <button type="submit">Create</button>
+      </form>
+    </div>
+  </div>
+  <div class="d-none" id="container-1">
+    <h1>Select the user, you wanted to add in this group</h1>
+    <ul id="userlist">
+      
+    </ul>
+    <button id="save" class="btn w-70">save</button>
+  </div>
+  <script src="./index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+</html>
