@@ -25,29 +25,24 @@
 
 //  loginuser
 const loginuser = async (e) =>{
+  e.preventDefault();
   try{ 
-    e.preventDefault();
      const obj = {
       email : email.value,
       password : password.value
      }
-     let response = await axios.post(`http://52.90.212.140:3000/user/login` ,obj);
-     console.log(response)
-      const  {data , token} = response.data;
-      localStorage.setItem('token' , token);
-     console.log(data);
-     window.location.href = '../main/index.html'
+     let response = await axios.post(`http://localhost:3000/user/login` ,obj);
+      const data = response.data
+      
+      localStorage.setItem('token' , data.token);
+      localStorage.setItem('messages' , JSON.stringify({}));
+      window.location.href = '../main/index.html'
   }
   catch(err){
-
-    if(err.response.status === 401){
+    // console.log(err);
       alert1.style.display = 'block'
       alert1.style.color = 'red'
       alert1.innerText = err.response.data.message
-    }else{
-      console.log(err)
-
-    }
   }
 }
  eyeIcon.addEventListener('click' , toggleicon);

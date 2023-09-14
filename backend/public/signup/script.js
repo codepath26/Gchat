@@ -23,27 +23,36 @@
       alert1.textContent = "Please Check The Password";
     } else {
       const obj = {
-        username: username.value,
+        userName: username.value,
         email: email.value,
         password: password.value,
       };
 
       try {
-        let response = await axios.post("http://52.90.212.140:3000/user/signup", obj);
-        console.log(response)
-        username.value = '',
-        email.value = '',
-        password.value = ''
-        CP.value = '';
-        window.location.href = '../login/login.html'
+        let response = await axios.post("http://localhost:3000/user/signup", obj);
+     
+        const user = response.data
+        if(user.message){
+          alert1.style.display = "block"
+          alert1.style.color = 'red'
+          alert1.innerHTML = user.message;
+        }else{
+
+          window.location.href = '../login/login.html'
+          username.value = '',
+          email.value = '',
+          password.value = ''
+          CP.value = '';
+        }
       } catch (err) {
-        if(err.response.status === 402){
+        if(err.response.status === 409){
            alert1.style.display = "block"
            alert1.style.color = 'red'
            alert1.innerHTML = err.response.data.message;
+        }else{
+          // console.log(err);
         }
-        console.log(err.response.status)
-        console.log(err);
+        
       }
     }
   };

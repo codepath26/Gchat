@@ -7,13 +7,13 @@ import User from '../models/user.js'
 const authenticateUser = async (req,res ,next)=>{
   try{
   //  console.log(req.headers)
-    const token = await req.headers.authorization
+  const token = req.headers["authentication"];
     const secretkey = process.env.JWT_SECRET_KEY
 // console.log(token)
 
     const data =  jwt.verify(token,secretkey);
     // console.log(data)
-    const user =  await User.findOne({where : { email : data.email}});
+    const user =  await User.findOne({where : { id : data.id}});
     // console.log(user);
     if(user){
       req.user = user ;
@@ -23,7 +23,7 @@ const authenticateUser = async (req,res ,next)=>{
     }
    
   }catch(err){
-    return res.status(500).json({success:false})
+    return res.status(403).json({success:false})
   }  
 }
 export default authenticateUser;

@@ -1,11 +1,11 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../utils/database.js";
 
-const group = sequelize.define('Group' , {
-  gName : {
+const GroupChat = sequelize.define('groupchat' , {
+  groupName : {
     type : DataTypes.STRING,
     allowNull : false,
   }
 })
 
-export default group ;
+export default GroupChat ;

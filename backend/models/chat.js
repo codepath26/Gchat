@@ -2,9 +2,9 @@ import { DataTypes } from "sequelize";
 import sequelize from "../utils/database.js";
 
 
-const groupMes = sequelize.define('GroupMessage',{
+const Chat = sequelize.define('chat',{
  message :{
   type : DataTypes.TEXT
  }
 });
-export default groupMes ;
+export default Chat ;
