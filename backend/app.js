@@ -9,14 +9,15 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { join } from 'path';
 import { Server } from 'socket.io';
+import {CronJob} from 'cron'
 
 
 
 import sequelize from './utils/database.js';
 import { getUserDetails } from  "./utils/user-base.js";
-// import { storeMultimedia } from  "./utils/multimedia.js";
+import { storeMultimedia } from  "./utils/multimedia.js";
 import {addChat} from './utils/chat-base.js'
-// import { moveChatToArchive } from  "./utils/corn.js";
+import { moveChatToArchive } from  "./utils/corn.js";
 
 
 
@@ -95,6 +96,18 @@ GroupChat.belongsToMany(User , {through : "usergroup"});
 
 GroupChat.hasMany(Admin)
 User.hasMany(Admin);
+
+
+// CRON JOB
+const job = new CronJob(
+  "0 0 * * *",
+  moveChatToArchive,
+  null,
+  true,
+  "Asia/Kolkata"
+);
+job.start();
+
 
 const BOTNAME = "GchatBot"
 

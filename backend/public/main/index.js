@@ -17,10 +17,10 @@ const setting = document.getElementById("setting");
 const infoDiv = document.getElementById("info-div");
 const memberCount = document.getElementById("member-count");
 const profile = document.getElementById("G-name");
-console.log(baseHeading)
+// console.log(baseHeading)
 
 
-
+ 
 
 
 if (!token) {

@@ -1,5 +1,5 @@
 import ArchiveChat from '../models/archiveChat.js'
-import Chat from '../models/chat';
+import Chat from '../models/chat.js';
  const moveChatToArchive = async () => {
   const chats = await Chat.findAll();
   chats.forEach(async (chat) => {
